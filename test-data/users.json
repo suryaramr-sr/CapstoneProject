@@ -1,0 +1,10 @@
+{
+  "validUser": {
+    "email": "test@playlab.com",
+    "password": "Password123"
+  },
+  "invalidUser": {
+    "email": "wrong@playlab.com",
+    "password": "WrongPassword"
+  }
+}

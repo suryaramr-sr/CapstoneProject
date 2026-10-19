@@ -1,0 +1,29 @@
+require('dotenv').config();
+const { expect } = require('@playwright/test');
+
+class SearchableDropdown {
+  constructor(page) {
+    this.page = page;
+    this.filterInput = page.locator('input[placeholder="Type to filter cities..."]');
+    this.filterButton = this.page.locator('#searchableDropdownMenu');
+  }
+
+  async navigate() {
+    await this.page.goto(`${process.env.BASE_URL}/index.html`);
+  }
+
+  async searchCity(city) {
+    await this.filterInput.scrollIntoViewIfNeeded();
+    await this.filterInput.fill(city);
+    await this.filterButton.click();
+    await this.page.waitForTimeout(500); // allow UI update
+  }
+
+  async verifySelectedCity(city) {
+    await expect(
+      this.page.getByText(new RegExp(`Selected:\\s*${city}`, 'i'))
+    ).toBeVisible();
+  }
+}
+
+module.exports = SearchableDropdown;

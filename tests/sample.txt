@@ -1,0 +1,91 @@
+E2E testing(client app testing)
+
+const {test ,expect} = require("@playwright/test");
+
+test('client app shopping application',async({page})=>{
+    await page.goto("https://www.saucedemo.com/");
+    await page.locator("#user-name").fill("standard_user");
+    await page.locator("#password").fill("secret_sauce");
+    await page.locator("#login-button").click();
+    await page.locator(".inventory_item_name ").first().waitFor();//locate firsr item
+    console.log(await page.locator(".inventory_item_name ").allTextContents());//To get title of all items(products)
+    const productname="Sauce Labs Backpack";
+    const count1=await page.locator(".inventory_item_name ").count();//to take count of items
+    console.log(count1);
+    
+    for(let i=0;i<count1;i++){
+        if(await page.locator(".inventory_item_name ").nth(i).textContent()===productname){
+            //await page.locator(text="Add to cart").nth(i).locator("Add to cart").click();
+            await page.locator(".inventory_item").nth(i).locator("text=Add to cart").click();
+            break;
+
+        }
+    }
+    //await page.locator(".shopping_cart_link").click();
+    await page.locator(".shopping_cart_link").click();
+    expect(await page.locator(".inventory_item_name").isVisible                    ()).toBeTruthy();
+    await page.locator("#checkout").click();
+    await page.locator("#first-name").fill("Surya");
+    await page.locator("#last-name").fill("Ram");
+    await page.locator("#postal-code").fill("123");
+    await page.locator("#continue").click();
+    await page.locator("#finish").click();
+    expect (await page.locator(".complete-header")).toHaveText("Thank you for your order!");
+
+});
+
+Test Suites
+
+const { test, expect } = require("@playwright/test");
+
+test.describe("sauce demo login test",()=>{
+    test.beforeEach(async({page})=>{
+        await page.goto("https://www.saucedemo.com/");
+
+    });
+    test.afterEach(async ({page})=>{
+        console.log("Test completed");
+        await page.close();
+    });
+    test('valid login',async ({page})=>{
+        await page.fill('#user-name','standard_user');
+        await page.fill('#password','secret_sauce');
+        await page.click('#login-button');
+        await expect(page.locator('.title')).toHaveText('Products');//assertion
+    });
+    test('Invalid login',async({page})=>{
+        await page.fill('#user-name','standard_user')
+        await page.fill('#password','wrong_password');
+        await page.click('#login-button');
+        await expect(page.locator('[data-test="error"]')).toBeVisible();//assertion
+
+    });
+});
+
+npx playwright test clientappobject.spec.js --config playwright.config1.js project==chrome
+npm 
+
+
+C:\Playwright>npx kill-port 9323
+Need to install the following packages:
+kill-port@2.0.1
+Ok to proceed? (y) y
+Process on port 9323 killed
+
+import  OrangeHRMPage from '../page-objects/orangehrm';
+
+npx playwright test clientappobject.spec.js --config playwright.config1.js project==chrome//to open trace
+npx playwright test UIBasics.spec.js --config playwright.config1.js// to run parallel test//opens in multiple browsers at same time
+npm install @playwright/test allure-playwright
+npx playwright test --grep @web --reporter=line,allure-playwright
+npx playwright test Debug.spec.js --config playwright.config1.js project==chrome
+
+Allure install
+npm install -D allure-playwright
+
+Create Folder
+npx playwright test --reporter=line,allure-playwright
+npx playwright test E2Etesting.spec.js --config playwright.config1.js
+
+java -jar jenkins.war
+02a426799c904294b3ad845981c0861a //Jenkins pw
