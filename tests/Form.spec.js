@@ -18,7 +18,7 @@ test('Register users with Excel data', async ({ page }) => {
   const data = await readExcelData('C:/Users/HP/Desktop/users.xlsx','Sheet1'); 
 
   for (const row of data) {
-    //await registrationPage.goto();
+   
     
     await registrationPage.register(
       row.FullName,

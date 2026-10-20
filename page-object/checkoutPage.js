@@ -21,7 +21,7 @@ class CheckoutPage {
 
   async proceedToPayment() {
     await this.continueToPaymentBtn.click();
-    //await expect(this.page).toHaveURL(/payment/i); // optional check if payment page loads
+    
   }
 }
 
