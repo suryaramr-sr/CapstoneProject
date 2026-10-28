@@ -4,7 +4,7 @@ const testData = require('./dropdownData.json');
 class DropdownPage {
   constructor(page) {
     this.page = page;
-    this.priorityDropdown = page.locator('select#priority'); // adjust locator
+    this.priorityDropdown = page.locator('select#priority'); 
     this.citySearchBox = page.locator('input[placeholder="Type to filter cities..."]');
   }
 
@@ -23,3 +23,4 @@ class DropdownPage {
 }
 
 module.exports = DropdownPage;
+

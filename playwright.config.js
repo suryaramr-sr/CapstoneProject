@@ -7,7 +7,11 @@ const config=({
   expect:{
     timeout:5000,
   },
-  reporter:'html',
+  //reporter:'html',
+  reporter:[
+['list'],
+['allure-playwright']
+  ],
   use:{
     browsername:'chromium',
     headless:false,
@@ -15,7 +19,7 @@ const config=({
     trace:'on',
     trace:'retain-on-failure',
     video:'retain-on-failure',
-    video:'on',
+    //video:'on',
   },
 })
 module.exports=config;

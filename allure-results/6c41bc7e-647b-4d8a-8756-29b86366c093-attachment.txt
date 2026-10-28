@@ -1,3 +1,0 @@
-Initial first row: [["color","Orange"],["fruit","Orange"],["price (₹/kg)","₹385"],["season","Winter"],["stock","108"],["weight (g)","604"]]
-First row after refresh 1: [["color","Yellow"],["fruit","Mango"],["price (₹/kg)","₹123"],["season","Summer"],["stock","149"],["weight (g)","333"]]
-Values changed after refresh 1
